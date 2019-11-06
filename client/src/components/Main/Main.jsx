@@ -89,7 +89,7 @@ class Main extends React.Component {
         </Box>
         <Box mt={5} mb={5} textAlign="center">
           <Typography variant="h4">
-            Save your money and find cheepest flight
+            Save your money and find cheapest flight
           </Typography>
         </Box>
         <Box mb={5} display="flex" justifyContent="center">
