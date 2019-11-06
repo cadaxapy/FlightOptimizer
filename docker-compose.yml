@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  server:
+      build: ./server
+      container_name: flight_server
+      ports:
+        - "8080:8080"
+  client:
+    build: ./client
+    container_name: flight_client
+    depends_on:
+      - "server"
+    ports:
+      - '5000:80'
