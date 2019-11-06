@@ -67,4 +67,4 @@ async def flight_optimizer(request):
     except KeyError as e:
         return web.json_response(text=str('Incorrect parameters'), status=500)
     except Exception as e:
-        return web.HTTPInternalServerError(text=str(e), status=500)
+        return web.json_response(text=str(e), status=500)

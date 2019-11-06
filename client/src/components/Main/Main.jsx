@@ -59,7 +59,7 @@ class Main extends React.Component {
       this.setState({
         fetched: true,
         loading: false,
-        errorMsg: e.response ? e.response.data : "Network error"
+        errorMsg: e.response ? e.response.data : "Something went wrong"
       });
     }
   };
