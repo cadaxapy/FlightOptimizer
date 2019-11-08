@@ -1,29 +1,40 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/CardContent";
-
+import { Box, Card, Typography } from "@material-ui/core";
 import "./Flight.css";
 
 class Flight extends React.Component {
-  render() {
-    const {flight} = this.props;
+  renderLabel = () => {
+    const { cheapest } = this.props.flight;
+    if (!cheapest) {
+      return <Box p={2} />;
+    }
     return (
-        <Card className="flight-container">
-          <CardMedia
-            className='media'
-            heigth="140"
-            image="/flight.jpg"
-          />
-          <CardContent className="flight-content">
-          <Typography variant="h5" component="h2">
-            {flight.city}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {flight.cost}
-          </Typography>
-          </CardContent>
+      <Box p={1} className="flight-label-item" fontWeight="bold" fontSize={14}>
+        Cheapest
+      </Box>
+    );
+  };
+  render() {
+    const { flight } = this.props;
+    return (
+      <Card className="flight-container">
+        <Box display="flex" justifyContent="center">
+          {this.renderLabel()}
+        </Box>
+        <Box m={2} display="flex" alignItems="center" flexDirection="column">
+          <Box
+            width={1}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            mb={2}
+          >
+            <Typography variant="h6">{flight.from}</Typography>
+            <hr className="line" />
+            <Typography variant="h6">{flight.to}</Typography>
+          </Box>
+          <Typography>{`${flight.cost}$/km`}</Typography>
+        </Box>
       </Card>
     );
   }

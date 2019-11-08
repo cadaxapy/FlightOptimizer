@@ -1,33 +1,30 @@
-.media {
-  height: 140px;
+.line {
+  display: block;
+  width: 15%;
+  height: 1px;
+  border: 0;
+  border-top: 1.7px solid black;
+  margin: 1em 5px;
+  padding: 0;
 }
 
+.flight-label-item {
+  background: rgb(237, 181, 34);
+  background: radial-gradient(
+    circle,
+    rgba(237, 181, 34, 1) 0%,
+    rgba(255, 170, 50, 1) 80%
+  );
+  color: #01244e;
+  width: 25%;
+  border-radius: 0 0 8px 8px;
+  text-align: center;
+}
 .flight-container {
-  width: 270px;
-  /* max-width: 450em;*/
-}
-
-h2,
-p {
-  margin: 0;
-}
-/* 
-@media screen and (max-width: 768px) {
-  .flight-container {
-      width: 250px;
-  }
-} */
-
-.flight-content {
-  background: #d3cce3; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #e9e4f0,
-    #d3cce3
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #e9e4f0,
-    #d3cce3
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: rgb(214, 238, 255);
+  background: radial-gradient(
+    circle,
+    rgba(214, 238, 255, 1) 0%,
+    rgba(190, 235, 245, 1) 72%
+  );
 }

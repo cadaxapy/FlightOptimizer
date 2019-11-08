@@ -26,7 +26,7 @@ class KiwiApi:
             raise Exception(f'location {city_name} not found')
         city_info = data['locations'][0]
         return {
-            'name': city_name,
+            'name': city_info['name'],
             'id': city_info['id'],
             'location': (city_info['location']['lat'], city_info['location']['lon']),
         }
@@ -40,7 +40,7 @@ class KiwiApi:
             ('to', ','.join(to_cities_id)),
             ('one_for_city', 1),
             ('adults', 1),
-            ('date_from', date_from),
+            # ('date_from', date_from),
             ('date_to', date_to),
             ('partner', 'picky'),
             ('curr', 'USD'),

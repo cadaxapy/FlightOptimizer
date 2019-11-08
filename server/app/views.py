@@ -2,13 +2,17 @@ import asyncio
 import json
 from haversine import haversine
 from aiohttp import web
-
+import operator
 
 async def flight_optimizer(request):
     try:
+        response_dict = {}
         # Getting query parameters from request
         from_city = request.rel_url.query['from']
         to_cities = request.rel_url.query.getall('to')
+
+        # Removing duplicates
+        to_cities = list(dict.fromkeys(to_cities))
 
         kiwi_api = request.app['kiwi_api']
 
@@ -30,39 +34,32 @@ async def flight_optimizer(request):
         # and returns dict where key equals city of id and value equals flight cost in USD
         to_cities_ids = [to_city['id'] for to_city in to_cities_info]
         cheapest_flights = await kiwi_api.get_cheapest_flights(from_city_info['id'], to_cities_ids)
+        if not cheapest_flights:
+            response_dict['found'] = False
+            return web.json_response(body=json.dumps(response_dict), status=200)
 
-        # calculating cost per km, sorting and getting minimal result
-        min_val = None
+
+        # calculating cost per km
+        results = []
         for to_city_info in to_cities_info:
-
             if not to_city_info['id'] in cheapest_flights:
                 continue
 
             cost = cheapest_flights[to_city_info['id']]
             distance = haversine(
                 from_city_info['location'], to_city_info['location'])
-            cost_per_distance = round(cost / distance, 2)
+            cost_per_distance = round(cost / distance, 3)
+            results.append({
+                'from': from_city_info['name'],
+                'to': to_city_info['name'],
+                'cost': cost_per_distance,
+            })
 
-            if not min_val:
-                min_val = {
-                    'city': to_city_info['name'],
-                    'cost_per_distance': cost_per_distance,
-                }
-            elif min_val['cost_per_distance'] > cost_per_distance:
-                min_val = {
-                    'city': to_city_info['name'],
-                    'cost_per_distance': cost_per_distance,
-                }
+        results.sort(key=operator.itemgetter('cost'))
+        results[0]['cheapest'] = True
 
-        response_dict = {}
-        if not min_val:
-            response_dict['found'] = False
-            return web.json_response(body=json.dumps(response_dict), status=200)
         response_dict['found'] = True
-        response_dict['flight'] = {
-            'city': min_val['city'],
-            'cost': f"{min_val['cost_per_distance']}$/km"
-        }
+        response_dict['flights'] = results
         return web.json_response(body=json.dumps(response_dict), status=200)
     except KeyError as e:
         return web.json_response(text=str('Incorrect parameters'), status=500)

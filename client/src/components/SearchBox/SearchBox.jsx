@@ -1,10 +1,7 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import Chip from "@material-ui/core/Chip";
-import Fab from "@material-ui/core/Fab";
-import Grid from "@material-ui/core/Grid";
 import SearchIcon from "@material-ui/icons/Search";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { TextField, Chip, Fab, Grid } from "@material-ui/core";
 
 class SearchBox extends React.Component {
   constructor(props) {
@@ -63,52 +60,50 @@ class SearchBox extends React.Component {
     } = this;
     const { isFromCityValid, isToCitiesValid } = this.state;
     return (
-      <React.Fragment>
-        <Grid
-          container
-          className="search-container"
-          direction="row"
-          alignItems="center"
-          justify="center"
-          spacing={2}
-        >
-          <Grid item xs={12} sm={5}>
-            <TextField
-              error={!isFromCityValid}
-              data-testid="fromCityInput"
-              label="From city"
-              fullWidth
-              className="input"
-              variant="outlined"
-              onChange={handleOnChangeFromCity}
-            />
-          </Grid>
-          <Grid item xs={12} sm={5}>
-            <Autocomplete
-              multiple
-              freeSolo
-              data-testid="toCitiesInput"
-              renderTags={this.renderTags}
-              onChange={handleOnChangeToCities}
-              renderInput={params => (
-                <TextField
-                  {...params}
-                  error={!isToCitiesValid}
-                  fullWidth
-                  className="input"
-                  variant="outlined"
-                  label="To Cities"
-                />
-              )}
-            />
-          </Grid>
-          <Grid item>
-            <Fab color="primary" aria-label="like" onClick={onSearchClick}>
-              <SearchIcon />
-            </Fab>
-          </Grid>
+      <Grid
+        container
+        className="search-container"
+        direction="row"
+        alignItems="center"
+        justify="center"
+        spacing={2}
+      >
+        <Grid item xs={12} sm={5}>
+          <TextField
+            error={!isFromCityValid}
+            data-testid="fromCityInput"
+            label="From city"
+            fullWidth
+            className="input"
+            variant="outlined"
+            onChange={handleOnChangeFromCity}
+          />
         </Grid>
-      </React.Fragment>
+        <Grid item xs={12} sm={5}>
+          <Autocomplete
+            multiple
+            freeSolo
+            data-testid="toCitiesInput"
+            renderTags={this.renderTags}
+            onChange={handleOnChangeToCities}
+            renderInput={params => (
+              <TextField
+                {...params}
+                error={!isToCitiesValid}
+                fullWidth
+                className="input"
+                variant="outlined"
+                label="To Cities"
+              />
+            )}
+          />
+        </Grid>
+        <Grid item>
+          <Fab color="primary" aria-label="like" onClick={onSearchClick}>
+            <SearchIcon />
+          </Fab>
+        </Grid>
+      </Grid>
     );
   }
 }
