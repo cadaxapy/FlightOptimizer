@@ -1,7 +1,7 @@
 import React from "react";
 import SearchIcon from "@material-ui/icons/Search";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import { TextField, Chip, Fab, Grid } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 class SearchBox extends React.Component {
   constructor(props) {
@@ -62,7 +62,6 @@ class SearchBox extends React.Component {
     return (
       <Grid
         container
-        className="search-container"
         direction="row"
         alignItems="center"
         justify="center"
@@ -74,7 +73,6 @@ class SearchBox extends React.Component {
             data-testid="fromCityInput"
             label="From city"
             fullWidth
-            className="input"
             variant="outlined"
             onChange={handleOnChangeFromCity}
           />
@@ -91,7 +89,6 @@ class SearchBox extends React.Component {
                 {...params}
                 error={!isToCitiesValid}
                 fullWidth
-                className="input"
                 variant="outlined"
                 label="To Cities"
               />
