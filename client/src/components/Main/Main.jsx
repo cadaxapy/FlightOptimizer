@@ -69,7 +69,7 @@ class Main extends React.Component {
   };
   render() {
     return (
-      <Container className="MainScreen">
+      <Container>
         <Box mt={5} mb={5} textAlign="center">
           <Typography variant="h3">Flight Optimizer</Typography>
         </Box>

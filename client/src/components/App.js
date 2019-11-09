@@ -1,10 +1,10 @@
 import React from "react";
-import Main from "./Main/Main.jsx";
 import {
   createMuiTheme,
   responsiveFontSizes,
   ThemeProvider
 } from "@material-ui/core/styles";
+import Main from "./Main/Main.jsx";
 
 let theme = createMuiTheme({
   typography: {
