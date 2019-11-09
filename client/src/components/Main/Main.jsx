@@ -2,13 +2,12 @@ import React from "react";
 import API from "../../utils/Api.js";
 import {
   Container,
-  Grid,
   CircularProgress,
   Box,
   Typography
 } from "@material-ui/core";
 import SearchBox from "../SearchBox/SearchBox.jsx";
-import Flight from "../Flight/Flight.jsx";
+import FlightList from "../FlightList/FlightList.jsx";
 import qs from "qs";
 
 class Main extends React.Component {
@@ -32,17 +31,11 @@ class Main extends React.Component {
           to: toCities
         },
         paramsSerializer: params => {
+          // By default axios send query arrays as key[]=val&key[]=val2,
+          // But in our API arrays need to be key=val&key=val2
           return qs.stringify(params, { arrayFormat: "repeat" });
         }
       });
-      if (!data.found) {
-        this.setState({
-          loading: false,
-          fetched: true,
-          errorMsg: "Sorry, no flight was found :c"
-        });
-        return;
-      }
       this.setState({
         flights: data.flights,
         loading: false,
@@ -53,7 +46,7 @@ class Main extends React.Component {
       this.setState({
         fetched: true,
         loading: false,
-        errorMsg: e.response ? e.response.data : "Something went wrong"
+        errorMsg: e.response ? e.response.data.error : "Something went wrong"
       });
     }
   };
@@ -70,21 +63,7 @@ class Main extends React.Component {
           </Typography>
         );
       }
-      return (
-        <Grid
-          container
-          spacing={2}
-          display="flex"
-          justify="center"
-          alignItems="center"
-        >
-          {flights.map(flight => (
-            <Grid item xs={12} md={7} key={flight.to}>
-              <Flight flight={flight} />
-            </Grid>
-          ))}
-        </Grid>
-      );
+      return <FlightList flights={flights} />;
     }
     return null;
   };

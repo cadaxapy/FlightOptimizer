@@ -48,7 +48,6 @@ class KiwiApi:
         response = await self.__session.get(f'{self.url}/aggregation_flights',
                                           params=params)
         json_data = await response.json()
-        print(json_data)
         return json_data['data']
 
 

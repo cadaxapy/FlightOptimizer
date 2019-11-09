@@ -33,7 +33,11 @@ class Flight extends React.Component {
             <hr className="line" />
             <Typography variant="h6">{flight.to}</Typography>
           </Box>
-          <Typography>{`${flight.cost}$/km`}</Typography>
+          {flight.found ? (
+            <Typography>{`${flight.cost}$/km`}</Typography>
+          ) : (
+            <Typography>No flight was found :c</Typography>
+          )}
         </Box>
       </Card>
     );

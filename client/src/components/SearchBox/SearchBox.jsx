@@ -81,13 +81,13 @@ class SearchBox extends React.Component {
           <Autocomplete
             multiple
             freeSolo
-            data-testid="toCitiesInput"
             renderTags={this.renderTags}
             onChange={handleOnChangeToCities}
             renderInput={params => (
               <TextField
                 {...params}
                 error={!isToCitiesValid}
+                data-testid="toCitiesInput"
                 fullWidth
                 variant="outlined"
                 label="To Cities"
@@ -96,7 +96,7 @@ class SearchBox extends React.Component {
           />
         </Grid>
         <Grid item>
-          <Fab color="primary" aria-label="like" onClick={onSearchClick}>
+          <Fab data-testid="searchButton" color="primary" aria-label="like" onClick={onSearchClick}>
             <SearchIcon />
           </Fab>
         </Grid>

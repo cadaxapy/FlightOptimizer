@@ -1,0 +1,42 @@
+tags:
+  - Main
+produces:
+- application/json
+parameters:
+- name: from
+  in: query
+  type: string
+  description: Departure city
+  required: true
+- name: to
+  in: query
+  type: array
+  required: true
+  collectionFormat: multi
+  description: Must be send as to=London&to=Paris
+  items:
+    type: string
+responses:
+  "200":
+    description: Successful operation
+    schema:
+      type: object
+      items:
+        from:
+          type: string
+        to:
+          type: string
+        cost:
+          type: integer
+          description: cost in USD per distance in km
+        found:
+          type: boolean
+        cheapest:
+          type: boolean
+  "500":
+    description: Error
+    schema:
+      type: object
+      items:
+        error: 
+          type: string
