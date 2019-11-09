@@ -15,7 +15,7 @@ pip install -r requirements.txt
 python main/py --port=CUSTOM_PORT //By default 8080
 ```
 
-### Documentation
+### API Documentation
 
 You can get documentation from your local server url: http://localhost:8080/docs
 
