@@ -16,7 +16,7 @@ Install [docker](https://docs.docker.com/install/) with [docker-compose](https:/
 docker-compose up -d --build
 ```
 
-#### Separetly
+#### Separetely
 
 [client](https://github.com/cadaxapy/FlightOptimizer/tree/master/client)
 

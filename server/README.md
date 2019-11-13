@@ -19,4 +19,4 @@ python main/py --port=CUSTOM_PORT //By default 8080
 
 You can get documentation from your local server url: http://localhost:8080/docs
 
-or from demo server url: [docs](http://ec2-18-191-153-191.us-east-2.compute.amazonaws.com:8080/)
+or from demo server url: [docs](http://ec2-18-191-153-191.us-east-2.compute.amazonaws.com:8080/docs)

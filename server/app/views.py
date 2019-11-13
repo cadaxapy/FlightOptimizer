@@ -57,7 +57,7 @@ async def flight_optimizer(request):
                 'cost': cost_per_distance,
                 'found': True,
             })
-
+        
         results.sort(key=operator.itemgetter('cost'))
 
         if(len(results) > 0):
