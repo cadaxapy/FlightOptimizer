@@ -1,4 +1,4 @@
-# Flight Optimizer
+# Flight Optimizer test
 
 Application for searching cheapest flights in cost/km.
 
